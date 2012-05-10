@@ -1,0 +1,364 @@
+/* $ID style.css, v1 | PROJECT: PASTE | EcKstasy, 15/Mar/09 23:08 GMT+1 */
+
+body {
+	background-image: url('images/bg.png');
+	background-repeat: repeat-x;
+	background-color: #CCCCCC;
+	color: #222;
+	margin:0px;
+	padding:0px;
+	font:11px verdana, arial, helvetica, sans-serif;
+}
+
+.header {
+	height: 50px;
+}
+
+.header .logo {
+	margin-top: 7px;
+	float: left;
+	border: none;
+	padding-left: 10px;
+}
+
+.header .tabs {
+	float: right;
+	margin-top: 15px;
+	padding-right: 10px;
+}
+
+.header ul.tabs li {
+	display: inline;
+	text-align: center;	
+	padding-left: 40px;
+	width: auto;
+	float: left;
+	color: #737373;
+}
+
+.header ul.tabs li a {
+	color: inherit;	
+	text-decoration: none;
+}
+
+.header .tabs li a.active, .header .tabs li a:hover {
+	color: #F2F2F2;
+}
+
+h1 {
+	
+	border: 2px solid #D9D9D9;
+	background-color: #8C8C8C;
+	color: #D9D9D9;
+	font-family: trebuchet ms, verdana, sans-serif;
+	font-size: 11px;
+	font-weight: bold;
+	text-align: center;
+	padding: 3px 0px 3px 0px;
+	margin-bottom: 0px;
+	margin-top: 0px; 
+}
+	
+
+p {
+	font:11px verdana, arial, helvetica, sans-serif;
+	margin:0px 10px 10px 10px;
+}
+
+select{
+font:11px/20px verdana, arial, helvetica, sans-serif;
+		
+}
+
+label
+{
+	font-weight:bold;
+}
+
+.syntax a
+{
+	font-family: 'Courier New', Courier, monospace; 
+	font-weight: normal;
+	color:black;
+	text-decoration:underline;
+}
+
+a {
+	color:#A8A8A8;
+	font-size:11px;
+	font-family:verdana, arial, helvetica, sans-serif;
+	font-weight:600;
+	text-decoration:none;
+}
+
+a:link {color:#A8A8A8;}
+a:visited {color:#07a;}
+a:hover {text-decoration:underline;}
+  
+h1 a{color:white; text-decoration:none;font-weight:bold;}
+h1 a:link{color:white;}
+h1 a:visited{color:white;}
+h1 a:hover{color:#D9D9D9; text-decoration: none;}
+
+#titlebar a{color:white; text-decoration:underline;font-weight:bold;}
+#titlebar a:link{color:white;}
+#titlebar a:visited{color:white;}
+#titlebar a:hover{color:yellow;background-color:transparent;}
+
+a.code {
+	text-decoration:underline; 
+	font-family:courier, fixed;
+	font-weight:normal;}
+a.code:link {color:#09c;}
+a.code:visited {color:#07a;}
+a.code:hover {text-decoration:underline;}
+
+
+
+
+code { font-size:12px;width:98%;}
+
+.codeedit {	font-size:12px;width:98%;}
+
+
+#titlebar {
+	padding: 0px 0px 0px 5px;
+	height:16px;
+	border-top: solid 1px #73a5d3;
+	border-bottom: solid 1px #39526b;
+	background-color: #8C8C8C;
+	color: #fff;
+	margin-bottom: 11px;
+}
+
+.nav { margin: 0px 5px 0px 5px; }
+	
+
+
+#Content>p {margin:0px;}
+#Content>p+p {text-indent:30px;}
+
+#content {
+	margin:0px 5px 50px 170px;
+   top: 27px;
+}
+
+.archive th {
+   text-align: left;
+}
+
+.padright {
+   padding-right: 10px;
+}
+
+#topInfo {
+   padding: 5px;
+   top: 27px;
+   background-color: white;
+   margin-top: 20px;
+   border: 1px solid #A8A8A8;
+}
+
+#paste {
+   padding: 5px;
+   top: 27px;
+   background-color: white;
+   margin-top: 10px;
+   border: 1px solid #A8A8A8;
+}
+
+#pasteInfo {
+   padding: 5px;
+   top: 27px;
+   background-color: white;
+   margin-top: 10px;
+   border: 1px solid #A8A8A8;
+}
+
+#menu {
+	position:absolute;
+	top:28px;
+	left:10px;
+	width:162px;
+	background-color: white;
+	border: 1px solid #A8A8A8;
+	overflow: hidden;
+	margin-top: 36px;
+	/* IE5 Hack */
+	voice-family: "\"}\"";
+	voice-family:inherit;
+	width:140px;
+}
+
+/* be nice to Opera 5 */
+body>#Menu {width:150px;}
+
+#menu>p {margin:2px;line-height:1.5em;}
+
+li.highlight{ background-color: #D9D9D9; }
+
+#menu ul {
+   margin-left:10px;
+   padding-left:0px;
+   list-style-type: none;
+   margin-bottom: 0px;
+}
+
+#menu li {
+   background-image: url(images/paste_plain.png);
+   background-repeat: no-repeat;
+   padding-left: 20px;
+   line-height: 1.4em;
+}
+
+.meta {
+   padding-left: 10px;
+   padding-bottom: 5px;
+}
+
+#errors ul {
+	margin-left:15px;
+	padding-left:0px;
+   list-style-type: none;
+}
+
+#errors li {
+   background-image: url(images/exclamation.png);
+   background-repeat: no-repeat;
+   padding-left: 20px;
+   padding-bottom: 2px;
+}
+
+.bringDown {
+   margin-top: 3px;
+}
+
+.passProtected {
+   background: url(images/lock.png) no-repeat scroll 0px;
+   padding-left: 20px;
+   padding-top: 1px;
+   padding-bottom: 2px;
+}
+
+.error {
+   background: url(images/exclamation.png) no-repeat scroll 0px;
+   padding-left: 20px;
+   padding-bottom: 2px;
+}
+
+.arch {
+   background: url(images/folder.png) no-repeat scroll 0px;
+   padding-left: 20px;
+}
+
+.newPost {
+   background: url(images/new.png) no-repeat scroll 0px;
+   padding-left: 20px;
+}
+
+#namebox
+{
+	float:left;
+}
+
+#password
+{
+   float:left;
+   margin-left:20px;
+}
+
+#recaptcha
+{
+   float:left;
+   margin-left:20px;
+}
+
+#code
+{
+}
+
+hr {
+   size: 2px;
+}
+
+#expirybox
+{
+	float:left;
+	margin-left:20px;
+}
+
+#fmt
+{
+   float:left;
+}
+
+#notes
+{
+   float:left;
+   margin-left:20px;
+   background: white url(images/information.png) no-repeat scroll 0px;
+   padding-left: 20px;
+   padding-bottom: 1px;
+}
+
+#expirybox label
+{
+	padding-left:3px;
+	padding-right:3px;
+	
+}
+
+#expirybox label.current
+{
+	color:white;
+	background:#008800;
+	
+}
+
+#expiryinfo
+{
+	color:#008800;
+}
+
+.end
+{
+	clear:both;
+}
+
+table.diff td
+{
+	text-align:right;
+	padding-left:3px;
+	padding-right:3px;
+	font-size:8pt;
+}
+
+table.diff td.code
+{
+	text-align:left;
+	font-family: 'Courier New', Courier, monospace; 
+	font-weight: normal;
+}
+
+table.diff td.code pre
+{
+	margin:0;
+	padding:0;
+}
+
+table.diff tr.new
+{
+	background:#ddddff;
+}
+table.diff tr.old
+{
+	background:#ffdddd;
+}
+table.diff tr.hidenew
+{
+	display:none;
+}
+table.diff tr.hideold
+{
+	display:none;
+}

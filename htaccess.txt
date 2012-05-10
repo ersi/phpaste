@@ -1,0 +1,4 @@
+# PROJECT: PASTE
+RewriteEngine on
+RewriteRule ^([0-9]+)$ index.php?show=$1
+Options -Indexes
