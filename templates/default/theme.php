@@ -13,6 +13,19 @@
  echo $page['post']['codecss'];
  echo '</style>'."\n";
 }
+
+if ($CONF['useGoogleAnalytics'] == true) {
+    echo "<script type="text/javascript">"
+    echo "var _gaq = _gaq || [];"
+    echo "_gaq.push(['_setAccount', '" . $CONF['gAnalyticsTrackingCode'] . "']);"
+    echo "_gaq.push(['_trackPageview']);"
+    echo "(function() {"
+    echo "var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;"
+    echo "ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';"
+    echo "var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);"
+    echo "})();"
+    echo "</script>"
+
 ?>
 </head>
  <body>
