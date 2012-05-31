@@ -150,12 +150,19 @@ if ($pid >0)
 if (isset($_GET['archive']))
 {
 	?>
-	<h1>Archive (This could take a while to load)</h1>
+	<h1>Archive</h1>
 	<?php
 	mysql_connect($CONF['dbhost'], $CONF['dbuser'], $CONF['dbpass']) or die(mysql_error());
 	mysql_select_db($CONF['dbname']) or die(mysql_error());
-	$pastes = mysql_query("SELECT * FROM paste ORDER BY posted DESC");
-	
+
+    $rows_per_page = 100; // TODO: Make configurable from config.php
+    $count = mysql_fetch_array(mysql_query("SELECT COUNT(*) FROM paste"));
+    $total_rows = $count[0]; 
+    $page = 0; // TODO: Get from $_GET if it isn't empty
+    $offset = ($page * $rows_per_page);
+    $pastes = mysql_query("SELECT * FROM paste ORDER BY posted DESC LIMIT $rows_per_page OFFSET $offset");
+
+    echo "Currently showing $rows_per_page of $total_rows pastes";
 	echo "<table class=\"archive\">";
 	echo "<tr><th></th><th>Name</th><th class=\"padright\">Language</th><th>Posted on</th><th>Expires</th></tr>";
 	
