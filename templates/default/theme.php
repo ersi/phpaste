@@ -155,7 +155,7 @@ if (isset($_GET['archive']))
 	mysql_connect($CONF['dbhost'], $CONF['dbuser'], $CONF['dbpass']) or die(mysql_error());
 	mysql_select_db($CONF['dbname']) or die(mysql_error());
 
-    $rows_per_page = 100; // TODO: Make configurable from config.php
+    $rows_per_page = $CONF['rows_per_page'];
     $count = mysql_fetch_array(mysql_query("SELECT COUNT(*) FROM paste"));
     $total_rows = $count[0]; 
     $page = 0; // TODO: Get from $_GET if it isn't empty
