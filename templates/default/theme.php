@@ -1,5 +1,5 @@
-    <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
 <meta http-equiv="Content-Type" content="application/xhtml+xml; charset=iso-8859-1" />
@@ -13,15 +13,30 @@
  echo $page['post']['codecss'];
  echo '</style>'."\n";
 }
+
+if ($CONF['useGoogleAnalytics'] == true) {
+    echo "<script type=\"text/javascript\">\n";
+    echo "    var _gaq = _gaq || [];\n";
+    echo "    _gaq.push(['_setAccount', '" . $CONF['gAnalyticsTrackingCode'] . "']);\n";
+    echo "    _gaq.push(['_trackPageview']);\n";
+    echo "    (function() {\n";
+    echo "        var ga = document.createElement('script');\n"; 
+    echo "        ga.type = 'text/javascript'; ga.async = true;\n";
+    echo "        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';\n";
+    echo "        var s = document.getElementsByTagName('script')[0];\n";
+    echo "        s.parentNode.insertBefore(ga, s);\n";
+    echo "    })();\n";
+    echo "</script>\n";
+}
 ?>
 </head>
- <body>
-  <div class="header">
-   <a href="<?php echo $CONF['url'] ?>"><img src="<?php echo $CONF['url'] . 'templates/' . $CONF['template']?>/images/logo.png" alt="<?php echo $CONF['title']?>" title="<?php echo $CONF['title'] ?>" class="logo" /></a>
-	<ul class="tabs">
-	 <li><a href="<?php echo $CONF['url']?>" title="Submit a new paste">Submit</a></li>
-     <li><a href="<?php echo $CONF['url']?>?archive" title="List all public pastes">Archive</a></li>
-	</ul>
+<body>
+<div class="header">
+<a href="<?php echo $CONF['url'] ?>"><img src="<?php echo $CONF['url'] . 'templates/' . $CONF['template']?>/images/logo.png" alt="<?php echo $CONF['title']?>" title="<?php echo $CONF['title'] ?>" class="logo" /></a>
+<ul class="tabs">
+<li><a href="<?php echo $CONF['url']?>" title="Submit a new paste">Submit</a></li>
+<li><a href="<?php echo $CONF['url']?>?archive" title="List all public pastes">Archive</a></li>
+</ul>
 </div>
 <div id="menu">
 <h1>RECENT PASTES</h1>
@@ -180,9 +195,9 @@ else
 </div>
 <? if (!(isset($pass) && strcmp($postPass, $pass) != 0) || $pass == "EMPTY") {?>
 <form name="editor" method="post" action="index.php">
- <input type="hidden" name="parent_pid" value="<?php echo $page['post']['pid'] ?>"/>
- <div id="paste">
- <div id="fmt">Language: <select name="format">
+<input type="hidden" name="parent_pid" value="<?php echo $page['post']['pid'] ?>"/>
+<div id="paste">
+<div id="fmt">Language: <select name="format">
 <?php
 // Show popular GeSHi formats
 foreach ($CONF['geshiformats'] as $code=>$name)
@@ -205,37 +220,37 @@ foreach ($CONF['geshiformats'] as $code=>$name)
 	echo "<option $sel value=\"$code\">$name</option>";
 }
 ?>
- </select>
+</select>
 </div>
 
 <div id="notes">To highlight particular lines, prefix each line with <?php echo $CONF['highlight_prefix'] ?></div>
 
 <!-- Code edit box -->
- <textarea id="code" class="codeedit" name="code2" cols="90" rows="20" onkeydown="return catchTab(this,event)"><?php echo htmlspecialchars($page['post']['editcode']) ?></textarea>
+<textarea id="code" class="codeedit" name="code2" cols="90" rows="20" onkeydown="return catchTab(this,event)"><?php echo htmlspecialchars($page['post']['editcode']) ?></textarea>
 </div>
 
 <div id="pasteInfo">
 <div class="end"></div>
 <!-- The name box -->
 <div id="namebox"> <label for="poster">Name/Title (Optional)</label><br/>
- <input type="text" maxlength="24" size="24" id="poster" name="poster" value="<?php echo $page['poster'] ?>" />
- <input type="submit" name="paste" value="Submit"/> <br />
+<input type="text" maxlength="24" size="24" id="poster" name="poster" value="<?php echo $page['poster'] ?>" />
+<input type="submit" name="paste" value="Submit"/> <br />
 </div>
 
 <!-- The expiry buttons -->
 <div id="expirybox">
-  <div id="expiryradios"><label>How long should we keep your paste?</label><br/> 
-   <input type="radio" id="expiry_day" name="expiry" value="d" /> <?php if ($page['expiry']=='d') echo 'checked="checked"'; ?> <label id="expiry_day_label" for="expiry_day">One day</label>
-   <input type="radio" id="expiry_month" name="expiry" value="m" <?php if ($page['expiry']=='m') echo 'checked="checked"'; ?> /> <label id="expiry_month_label" for="expiry_month">One month</label>
-   <input type="radio" id="expiry_forever" name="expiry" value="f" <?php if ($page['expiry']=='f') echo 'checked="checked"'; ?> /> <label id="expiry_forever_label" for="expiry_forever">Forever</label>
-  </div>
- <div id="expiryinfo"></div>
+<div id="expiryradios"><label>How long should we keep your paste?</label><br/> 
+<input type="radio" id="expiry_day" name="expiry" value="d" /> <?php if ($page['expiry']=='d') echo 'checked="checked"'; ?> <label id="expiry_day_label" for="expiry_day">One day</label>
+<input type="radio" id="expiry_month" name="expiry" value="m" <?php if ($page['expiry']=='m') echo 'checked="checked"'; ?> /> <label id="expiry_month_label" for="expiry_month">One month</label>
+<input type="radio" id="expiry_forever" name="expiry" value="f" <?php if ($page['expiry']=='f') echo 'checked="checked"'; ?> /> <label id="expiry_forever_label" for="expiry_forever">Forever</label>
+</div>
+<div id="expiryinfo"></div>
 </div>
 
 <!-- The password box -->
 <div id="password">
- <label class="passProtected" for="password">Password (Optional)</label><br />
- <input type="password" class="bringDown" size="21" value="<?php if (strcmp($page['post']['password'],'EMPTY') != 0) { echo $page['post']['password']; } else { echo ''; } ?>" name="password" />
+<label class="passProtected" for="password">Password (Optional)</label><br />
+<input type="password" class="bringDown" size="21" value="<?php if (strcmp($page['post']['password'],'EMPTY') != 0) { echo $page['post']['password']; } else { echo ''; } ?>" name="password" />
 </div>
 
 <?php
@@ -243,23 +258,23 @@ if ($CONF['useRecaptcha']) {
 require_once('classes/recaptchalib.php');
 ?>
  <!-- reCAPTCHA -->
- <script>
-var RecaptchaOptions = {
-   theme : 'clean'
+<script>
+    var RecaptchaOptions = {
+    theme : 'clean'
 };
 </script>
 <div id="recaptcha">
- <?php echo recaptcha_get_html($CONF['pubkey'])."\n"; ?>
+<?php echo recaptcha_get_html($CONF['pubkey'])."\n"; ?>
 </div>
 <?php } ?>
  
 <?php } ?>
 <div class="end"></div>
 <?php } ?>
- <br />
-  <h1>&copy; <?php echo date("Y"); ?> - Powered by <a href="http://sourceforge.net/projects/phpaste/">PASTE</a> 1.0</h1>
-    </div>
-   </form>
-  </div>
- </body>
+<br />
+<h1>&copy; <?php echo date("Y"); ?> - Powered by <a href="http://sourceforge.net/projects/phpaste/">PASTE</a> 1.0</h1>
+</div>
+</form>
+</div>
+</body>
 </html>

@@ -34,6 +34,11 @@ $CONF['useRecaptcha'] = false;
 $CONF['pubkey']='yourpublickey';
 $CONF['privkey']='yourprivatekey';
 
+// Do you want to add Google Analytics tracking on your pastebin? false = no, true = yes
+$CONF['useGoogleAnalytics'] = false;
+// Get your tracking code at http://www.google.com/analytics/. You must enter it below for Analytics to work:
+$CONF['gAnalyticsTrackingCode'] = 'yourtrackingcode';
+
 /* 
 * Format of the URLs to the pastebin entries. %d = Entry ID.
 * If you're using Apache's mod_rewrite you'd use something like this: $CONF['url_format']="%d";
