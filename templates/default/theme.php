@@ -157,12 +157,19 @@ if (isset($_GET['archive']))
 
     $rows_per_page = $CONF['rows_per_page'];
     $count = mysql_fetch_array(mysql_query("SELECT COUNT(*) FROM paste"));
-    $total_rows = $count[0]; 
-    $page = 0; // TODO: Get from $_GET if it isn't empty
-    $offset = ($page * $rows_per_page);
+    $total_rows = $count[0];
+    $total_pages = ceil($total_rows / $rows_per_page);
+    if(isset($_GET['page'])) {
+        $page = mysql_real_escape_string($_GET['page']);
+        if($page < 1) $page = 1;
+        if($page > $total_pages) $page = $total_pages;
+    } else {
+        $page = 1;
+    }
+    $offset = (($page - 1) * $rows_per_page);
     $pastes = mysql_query("SELECT * FROM paste ORDER BY posted DESC LIMIT $rows_per_page OFFSET $offset");
 
-    echo "Currently showing $rows_per_page of $total_rows pastes";
+    echo "Currently showing page $page of $total_pages";
 	echo "<table class=\"archive\">";
 	echo "<tr><th></th><th>Name</th><th class=\"padright\">Language</th><th>Posted on</th><th>Expires</th></tr>";
 	
@@ -179,6 +186,17 @@ if (isset($_GET['archive']))
 	}
 	
 	echo "</table>";
+    if($page == 1) {
+        echo 'Previous ';
+    } else {
+        echo '<a href="?archive&page=' . ($page - 1) . '">Previous</a> ';
+    }
+    
+    if($page >= $total_pages) {
+        echo 'Next';
+    } else {
+        echo '<a href="?archive&page=' . ($page + 1) . '">Next</a>';
+    }
 	mysql_close();
 }
 else
