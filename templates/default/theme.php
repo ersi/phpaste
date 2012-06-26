@@ -169,7 +169,6 @@ if (isset($_GET['archive']))
     $offset = (($page - 1) * $rows_per_page);
     $pastes = mysql_query("SELECT * FROM paste ORDER BY posted DESC LIMIT $rows_per_page OFFSET $offset");
 
-    echo "Currently showing page $page of $total_pages";
 	echo "<table class=\"archive\">";
 	echo "<tr><th></th><th>Name</th><th class=\"padright\">Language</th><th>Posted on</th><th>Expires</th></tr>";
 	
@@ -187,15 +186,15 @@ if (isset($_GET['archive']))
 	
 	echo "</table>";
     if($page == 1) {
-        echo 'Previous ';
+        echo '<h1 class="pagBox">Previous page</h1>';
     } else {
-        echo '<a href="?archive&page=' . ($page - 1) . '">Previous</a> ';
+        echo '<h1 class="pagBox"><a href="?archive&page=' . ($page - 1) . '">Previous page</a> </h1>';
     }
     
     if($page >= $total_pages) {
-        echo 'Next';
+        echo '<h1 class="pagBox">Next page</h1>';
     } else {
-        echo '<a href="?archive&page=' . ($page + 1) . '">Next</a>';
+        echo '<h1 class="pagBox" style="float: right;"><a href="?archive&page=' . ($page + 1) . '">Next page</a></h1>';
     }
 	mysql_close();
 }
