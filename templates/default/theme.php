@@ -174,7 +174,7 @@ if (isset($_GET['archive']))
 	
 	while ($row = mysql_fetch_array($pastes))
 	{
-      $pass = ($row['password'] == "EMPTY") ? "" : "<img src=\"templates/default/images/lock.png\" title=\"Password protected\" />";
+      $pass = ($row['password'] == "EMPTY") ? "" : "<img src=\"" . $CONF['url'] . 'templates/' . $CONF['template'] . "/images/lock.png\" title=\"Password protected\" />";
 		echo "<tr>";
       echo "<td>" . $pass . "</td>";
 		echo "<td class=\"padright\"><a title=\"" . date("l F j, Y, g:i a", strtotime($row['posted'])) . "\" href=\"". $CONF['pastebin'] . "/" . $row['pid'] . "\">" . $row['poster'] . "</a></td>";
