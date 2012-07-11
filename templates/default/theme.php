@@ -192,7 +192,7 @@ if (isset($_GET['archive']))
     }
     
     if($page >= $total_pages) {
-        echo '<h1 class="pagBox">Next page</h1>';
+        echo '<h1 class="pagBox" style="float: right;">Next page</h1>';
     } else {
         echo '<h1 class="pagBox" style="float: right;"><a href="?archive&page=' . ($page + 1) . '">Next page</a></h1>';
     }
