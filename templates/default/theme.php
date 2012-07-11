@@ -165,18 +165,31 @@ if ($pid >0)
 if (isset($_GET['archive']))
 {
 	?>
-	<h1>Archive (This could take a while to load)</h1>
+	<h1>Archive</h1>
 	<?php
 	mysql_connect($CONF['dbhost'], $CONF['dbuser'], $CONF['dbpass']) or die(mysql_error());
 	mysql_select_db($CONF['dbname']) or die(mysql_error());
-	$pastes = mysql_query("SELECT * FROM paste ORDER BY posted DESC");
-	
+
+    $rows_per_page = $CONF['rows_per_page'];
+    $count = mysql_fetch_array(mysql_query("SELECT COUNT(*) FROM paste"));
+    $total_rows = $count[0];
+    $total_pages = ceil($total_rows / $rows_per_page);
+    if(isset($_GET['page'])) {
+        $page = mysql_real_escape_string($_GET['page']);
+        if($page < 1) $page = 1;
+        if($page > $total_pages) $page = $total_pages;
+    } else {
+        $page = 1;
+    }
+    $offset = (($page - 1) * $rows_per_page);
+    $pastes = mysql_query("SELECT * FROM paste ORDER BY posted DESC LIMIT $rows_per_page OFFSET $offset");
+
 	echo "<table class=\"archive\">";
 	echo "<tr><th></th><th>Name</th><th class=\"padright\">Language</th><th>Posted on</th><th>Expires</th></tr>";
 	
 	while ($row = mysql_fetch_array($pastes))
 	{
-      $pass = ($row['password'] == "EMPTY") ? "" : "<img src=\"templates/default/images/lock.png\" title=\"Password protected\" />";
+      $pass = ($row['password'] == "EMPTY") ? "" : "<img src=\"" . $CONF['url'] . 'templates/' . $CONF['template'] . "/images/lock.png\" title=\"Password protected\" alt=\"Lock\" />";
 		echo "<tr>";
       echo "<td>" . $pass . "</td>";
 		echo "<td class=\"padright\"><a title=\"" . date("l F j, Y, g:i a", strtotime($row['posted'])) . "\" href=\"". $CONF['pastebin'] . "/" . $row['pid'] . "\">" . $row['poster'] . "</a></td>";
@@ -187,6 +200,17 @@ if (isset($_GET['archive']))
 	}
 	
 	echo "</table>";
+    if($page == 1) {
+        echo '<h1 class="pagBox">Previous page</h1>';
+    } else {
+        echo '<h1 class="pagBox"><a href="?archive&amp;page=' . ($page - 1) . '">Previous page</a> </h1>';
+    }
+    
+    if($page >= $total_pages) {
+        echo '<h1 class="pagBox" style="float: right;">Next page</h1>';
+    } else {
+        echo '<h1 class="pagBox" style="float: right;"><a href="?archive&amp;page=' . ($page + 1) . '">Next page</a></h1>';
+    }
 	mysql_close();
 }
 else
@@ -271,10 +295,10 @@ require_once('classes/recaptchalib.php');
 <?php } ?>
 <div class="end"></div>
 <?php } ?>
-<br />
-<h1>&copy; <?php echo date("Y"); ?> - Powered by <a href="http://sourceforge.net/projects/phpaste/">PASTE</a> 1.0</h1>
-</div>
-</form>
-</div>
-</body>
+ <br />
+  <h1>&copy; <?php echo date("Y"); ?> - Powered by <a href="http://sourceforge.net/projects/phpaste/">PASTE</a> 1.0</h1>
+    </div>
+   </form>
+  </div>
+ </body>
 </html>

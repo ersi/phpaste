@@ -1,4 +1,19 @@
 # PROJECT: PASTE
-RewriteEngine on
-RewriteRule ^([0-9]+)$ index.php?show=$1
+# Purpose: Provides two rules to pretty up the URL's to :
+# 1) individual pastes 
+# 2) direct access to pages in the archive
+# Usage: Copy or rename file to .htaccess in the "web root directory" of your pastebin.
+
+# Disables generating directory indexes for the directory this file is present in, as well as subdirectories.
 Options -Indexes
+
+# Enables rewrites for the directory this file is present in, as well as subdirectories.
+RewriteEngine on
+
+# See: http://httpd.apache.org/docs/current/mod/mod_rewrite.html#rewritebase for more information
+RewriteBase /
+# This rule provides you with URLs like "http://hostname.tld/150" instead of http://hostname.tld/index.php?show=150
+RewriteRule ^([0-9]+)$ index.php?show=$1
+
+# This rule provides you with URLs like "http://hostname.tld/archive/page/5" instead of http://hostname.tld/index.php?archive&page=5"
+RewriteRule archive/page/([0-9]+)$ index.php?archive&page=$1

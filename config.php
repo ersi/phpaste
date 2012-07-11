@@ -53,6 +53,9 @@ $CONF['default_expiry']='f';
 // The maximum number of posts you want to keep. Keep this as-is if you want no limits.
 $CONF['max_posts']=0;
 
+// How many rows of pastes to list on the archive page
+$CONF['rows_per_page']=100;
+
 // What's the character you want to use for highlighting certain lines in pastes?
 $CONF['highlight_prefix']='@@';
 
