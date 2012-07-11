@@ -174,7 +174,7 @@ if (isset($_GET['archive']))
 	
 	while ($row = mysql_fetch_array($pastes))
 	{
-      $pass = ($row['password'] == "EMPTY") ? "" : "<img src=\"" . $CONF['url'] . 'templates/' . $CONF['template'] . "/images/lock.png\" title=\"Password protected\" />";
+      $pass = ($row['password'] == "EMPTY") ? "" : "<img src=\"" . $CONF['url'] . 'templates/' . $CONF['template'] . "/images/lock.png\" title=\"Password protected\" alt=\"Lock\" />";
 		echo "<tr>";
       echo "<td>" . $pass . "</td>";
 		echo "<td class=\"padright\"><a title=\"" . date("l F j, Y, g:i a", strtotime($row['posted'])) . "\" href=\"". $CONF['pastebin'] . "/" . $row['pid'] . "\">" . $row['poster'] . "</a></td>";
@@ -188,13 +188,13 @@ if (isset($_GET['archive']))
     if($page == 1) {
         echo '<h1 class="pagBox">Previous page</h1>';
     } else {
-        echo '<h1 class="pagBox"><a href="?archive&page=' . ($page - 1) . '">Previous page</a> </h1>';
+        echo '<h1 class="pagBox"><a href="?archive&amp;page=' . ($page - 1) . '">Previous page</a> </h1>';
     }
     
     if($page >= $total_pages) {
         echo '<h1 class="pagBox" style="float: right;">Next page</h1>';
     } else {
-        echo '<h1 class="pagBox" style="float: right;"><a href="?archive&page=' . ($page + 1) . '">Next page</a></h1>';
+        echo '<h1 class="pagBox" style="float: right;"><a href="?archive&amp;page=' . ($page + 1) . '">Next page</a></h1>';
     }
 	mysql_close();
 }
