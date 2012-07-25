@@ -264,7 +264,7 @@ foreach ($CONF['geshiformats'] as $code=>$name)
 <!-- The expiry buttons -->
 <div id="expirybox">
 <div id="expiryradios"><label>How long should we keep your paste?</label><br/> 
-<input type="radio" id="expiry_day" name="expiry" value="d" /> <?php if ($page['expiry']=='d') echo 'checked="checked"'; ?> <label id="expiry_day_label" for="expiry_day">One day</label>
+<input type="radio" id="expiry_day" name="expiry" value="d" <?php if ($page['expiry']=='d') echo 'checked="checked"'; ?> /> <label id="expiry_day_label" for="expiry_day">One day</label>
 <input type="radio" id="expiry_month" name="expiry" value="m" <?php if ($page['expiry']=='m') echo 'checked="checked"'; ?> /> <label id="expiry_month_label" for="expiry_month">One month</label>
 <input type="radio" id="expiry_forever" name="expiry" value="f" <?php if ($page['expiry']=='f') echo 'checked="checked"'; ?> /> <label id="expiry_forever_label" for="expiry_forever">Forever</label>
 </div>
