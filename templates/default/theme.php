@@ -203,13 +203,13 @@ if (isset($_GET['archive']))
     if($page == 1) {
         echo '<h1 class="pagBox">Previous page</h1>';
     } else {
-        echo '<h1 class="pagBox"><a href="?archive&amp;page=' . ($page - 1) . '">Previous page</a> </h1>';
+        echo '<h1 class="pagBox"><a href="' . $CONF['url'] . '?archive&amp;page=' . ($page - 1) . '">Previous page</a> </h1>';
     }
     
     if($page >= $total_pages) {
         echo '<h1 class="pagBox" style="float: right;">Next page</h1>';
     } else {
-        echo '<h1 class="pagBox" style="float: right;"><a href="?archive&amp;page=' . ($page + 1) . '">Next page</a></h1>';
+        echo '<h1 class="pagBox" style="float: right;"><a href="' . $CONF['url'] . '?archive&amp;page=' . ($page + 1) . '">Next page</a></h1>';
     }
 	mysql_close();
 }
