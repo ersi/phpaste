@@ -84,18 +84,19 @@ if (count($pastebin->errors))
 // Show a paste.
 function showMe()
 {
-	global $sep;
-	global $page;
-	global $post;
-	global $followups;
-	global $CONF;
+    global $sep;
+    global $page;
+    global $post;
+    global $followups;
+    global $CONF;
+    global $pastebin;
 
 	if (strlen($page['post']['posttitle']))
 	{
 			echo "<h1>{$page['post']['posttitle']}";
 			if ($page['post']['parent_pid']>0)
 			{
-				echo " (Modification of post by <a href=\"{$page['post']['parent_url']}\" title=\"View original post\">{$page['post']['parent_poster']}</a>)";
+				echo " (Modification of post by <a href=\"" . $CONF['url'] . $pastebin->getPasteURL($page['post']['parent_pid']) . "\" title=\"View original post\">{$page['post']['parent_poster']}</a>)";
 			}
 
 			echo "<br/>";
@@ -107,7 +108,7 @@ function showMe()
 				$sep="";
 				foreach($page['post']['followups'] as $idx=>$followup)
 				{
-					echo $sep."<a title=\"posted {$followup['postfmt']}\" href=\"{$followup['followup_url']}\">{$followup['poster']}</a>";
+					echo $sep."<a title=\"posted {$followup['postfmt']}\" href=\"" . $CONF['url'] . $pastebin->getPasteURL($followup['pid']) . "\">{$followup['poster']}</a>";
 					$sep=($idx<($followups-2))?", ":" and ";	
 				}
 				echo " | ";
