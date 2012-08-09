@@ -49,7 +49,7 @@ if ($CONF['useGoogleAnalytics'] == true) {
 		else
 			$cls="";
 			
-		echo "<li" . $cls . "><a href=\"{$entry['url']}\">";
+		echo "<li" . $cls . "><a href=\"" . $CONF['url'] . $entry['url'] . "\">";
 		echo $entry['poster'];
 		echo "</a><br/>{$entry['agefmt']}<br /><br /></li>\n";
 	}
@@ -84,18 +84,19 @@ if (count($pastebin->errors))
 // Show a paste.
 function showMe()
 {
-	global $sep;
-	global $page;
-	global $post;
-	global $followups;
-	global $CONF;
+    global $sep;
+    global $page;
+    global $post;
+    global $followups;
+    global $CONF;
+    global $pastebin;
 
 	if (strlen($page['post']['posttitle']))
 	{
 			echo "<h1>{$page['post']['posttitle']}";
 			if ($page['post']['parent_pid']>0)
 			{
-				echo " (Modification of post by <a href=\"{$page['post']['parent_url']}\" title=\"View original post\">{$page['post']['parent_poster']}</a>)";
+				echo " (Modification of post by <a href=\"" . $CONF['url'] . $pastebin->getPasteURL($page['post']['parent_pid']) . "\" title=\"View original post\">{$page['post']['parent_poster']}</a>)";
 			}
 
 			echo "<br/>";
@@ -107,7 +108,7 @@ function showMe()
 				$sep="";
 				foreach($page['post']['followups'] as $idx=>$followup)
 				{
-					echo $sep."<a title=\"posted {$followup['postfmt']}\" href=\"{$followup['followup_url']}\">{$followup['poster']}</a>";
+					echo $sep."<a title=\"posted {$followup['postfmt']}\" href=\"" . $CONF['url'] . $pastebin->getPasteURL($followup['pid']) . "\">{$followup['poster']}</a>";
 					$sep=($idx<($followups-2))?", ":" and ";	
 				}
 				echo " | ";
@@ -192,7 +193,7 @@ if (isset($_GET['archive']))
       $pass = ($row['password'] == "EMPTY") ? "" : "<img src=\"" . $CONF['url'] . 'templates/' . $CONF['template'] . "/images/lock.png\" title=\"Password protected\" alt=\"Lock\" />";
 		echo "<tr>";
       echo "<td>" . $pass . "</td>";
-		echo "<td class=\"padright\"><a title=\"" . date("l F j, Y, g:i a", strtotime($row['posted'])) . "\" href=\"". $CONF['pastebin'] . "/" . $row['pid'] . "\">" . $row['poster'] . "</a></td>";
+		echo "<td class=\"padright\"><a title=\"" . date("l F j, Y, g:i a", strtotime($row['posted'])) . "\" href=\"" . $CONF['url'] . $pastebin->getPasteURL($row['pid']) . "\">" . $row['poster'] . "</a></td>";
 		echo "<td>" . $CONF['geshiformats'][$row['format']] . "</td>";
       echo "<td class=\"padright\">" . date("m-d-y, g:i A", strtotime($row['posted'])) . "</td>";
       echo "<td>" . ((is_null($row['expires'])) ? "Never" : date("m-d-y, g:i A", strtotime($row['expires'])))  . "</td>";
@@ -203,13 +204,13 @@ if (isset($_GET['archive']))
     if($page == 1) {
         echo '<h1 class="pagBox">Previous page</h1>';
     } else {
-        echo '<h1 class="pagBox"><a href="?archive&amp;page=' . ($page - 1) . '">Previous page</a> </h1>';
+        echo '<h1 class="pagBox"><a href="' . $CONF['url'] . '?archive&amp;page=' . ($page - 1) . '">Previous page</a> </h1>';
     }
     
     if($page >= $total_pages) {
         echo '<h1 class="pagBox" style="float: right;">Next page</h1>';
     } else {
-        echo '<h1 class="pagBox" style="float: right;"><a href="?archive&amp;page=' . ($page + 1) . '">Next page</a></h1>';
+        echo '<h1 class="pagBox" style="float: right;"><a href="' . $CONF['url'] . '?archive&amp;page=' . ($page + 1) . '">Next page</a></h1>';
     }
 	mysql_close();
 }

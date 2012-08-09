@@ -39,13 +39,10 @@ $CONF['useGoogleAnalytics'] = false;
 // Get your tracking code at http://www.google.com/analytics/. You must enter it below for Analytics to work:
 $CONF['gAnalyticsTrackingCode'] = 'yourtrackingcode';
 
-/* 
-* Format of the URLs to the pastebin entries. %d = Entry ID.
-* If you're using Apache's mod_rewrite you'd use something like this: $CONF['url_format']="%d";
-* If you're not using mod_rewrite, you'll need to use something like:
-* $CONF['url_format']="?show=%d";
-*/
-$CONF['url_format']='%d';
+// Format of the URLs to the pastebin entries. %d = Entry ID.
+$CONF['url_format'] = '?show=%d';
+// Uncomment this version of url_format if you'd like to use the Apache mod_rewrite .htaccess file provided, for prettier URLs. 
+#$CONF['url_format'] = '%d';
 
 // Default expiry time - d (day), m (month), and f (forever).
 $CONF['default_expiry']='f';
