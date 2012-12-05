@@ -5,12 +5,18 @@ database structure, mainly resolving bugs and quirky behaviour.
 
 Requirements: PHP, MySQL
 
+INSTALL:
 1.1> Create a database for the pastebin.
 1.2> Add the tables to the database (paste.sql)
 2> Edit the configuration file to suit your needs (config.php)
 3> Upload all of the files to the webserver.
 4> (Optional) If you want to use Apache's mod_rewrite for pastes,
 simply edit htaccess.txt to suit your needs and rename it to .htaccess
+
+UPGRADE from 1.0 to 1.1:
+1> Unpack release
+2> Replace previous files with new release
+ie. no compatibility issues with database schema.
 
 If you find any bugs, quirky or illogical behavior or have idea for how 
 to improve the codebase, please open an issue at: 
