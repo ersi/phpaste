@@ -288,16 +288,16 @@ class Pastebin
 					$post['parent_url']=$this->getPasteUrl($parent_pid);
 					$post['parent_postdate']=$parent['postdate'];
 					$post['parent_diffurl']=$this->conf['diff_url']."$pid";
-					
-                } else {
-                    /* If parent_pid is larger than zero but $parent is null, then
-                       the parent paste has probably been cleaned out.
-                       We could clean up the database, but I'd rather keep this
-                       metadata around - so that we could display it in presentation
-                       layer if we wanted to. */
-                    $post['parent_pid'] = 0;
+				}
+			} else {
+				/* If parent_pid is larger than zero but $parent is null, then
+				the parent paste has probably been cleaned out.
+				we could clean up the database, but I'd rather keep this
+				metadata around - so that we could display it in presentation
+				layer if we wanted to. */
+				$post['parent_pid'] = 0;
 			}
-	
+
 			// Amendments
 			$post['followups']=$this->db->getFollowupPosts($pid);
 			foreach($post['followups'] as $idx=>$followup)
